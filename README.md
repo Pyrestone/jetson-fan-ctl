@@ -21,13 +21,20 @@ otherwise, you can install it with
 
 
 ## How to install:
-add the following lines to /etc/rc.local:
+add the following lines to the start of /etc/rc.local:
 
+    #!/bin/bash
     jetson_clocks
     python3 /path/to/your/jetson-fan-ctl/fanctl.py &
 
 replace <code>/path/to/your/jetson-fan-ctl/fanctl.py</code> 
 by the path to fanctl.py in your system.  
+if /etc/rc.local doesn't exist, create it.
+
+Additionally, run
+    
+    sudo chmod +x /etc/rc.local
+
 The script will automatically run at boot time.
 
 It's a set-it-and-forget-it type thing, unless you want to mess with the fan speeds.
