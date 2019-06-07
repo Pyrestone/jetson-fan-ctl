@@ -21,7 +21,11 @@ otherwise, you can install it with
 
 
 ## How to install:
-add the following lines to the start of /etc/rc.local:
+open /etc/rc.local using your favorite editor. I'm using nano here:
+
+    sudo nano /etc/rc.local
+
+add the following lines to the start of the file:
 
     #!/bin/bash
     jetson_clocks
@@ -29,7 +33,8 @@ add the following lines to the start of /etc/rc.local:
 
 replace <code>/path/to/your/jetson-fan-ctl/fanctl.py</code> 
 by the path to fanctl.py in your system.  
-if /etc/rc.local doesn't exist, create it.
+For me, this was <code>/home/pyrestone/jetson-fan-ctl/fanctl.py</code>
+
 
 Additionally, run
     
