@@ -1,5 +1,5 @@
 # jetson-fan-ctl
-Automagic fan control for the jetson nano
+Automagic fan control for the Nvidia Jetson Nano
 
 ## Requirements:
 
