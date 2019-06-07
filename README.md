@@ -5,7 +5,7 @@ Automagic fan control for the jetson nano
 
 ### Hardware
 I recommend you use the barrel jack with a 4A power supply  
-Additionally, you will need a 5V PWM fan for this to make any sense.
+Additionally, you will need a 5V PWM fan for this to make any sense.  
 I used the Noctua nf-a4x20 5v pwm version.
 
 ### Software
