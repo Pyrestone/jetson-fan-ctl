@@ -1,14 +1,26 @@
-import subprocess as sp
+#!/usr/bin/python3
 import time
+import json
+import subprocess as sp
 
-FAN_OFF_TEMP=20
-FAN_MAX_TEMP=50
-UPDATE_INTERVAL=2
+sp.call("jetson_clocks")
+
+try:
+	with open("/etc/automagic-fan/config.json","r") as file:
+		config=json.load(file)
+	FAN_OFF_TEMP=config["FAN_OFF_TEMP"]
+	FAN_MAX_TEMP=config["FAN_MAX_TEMP"]
+	UPDATE_INTERVAL=config["UPDATE_INTERVAL"]
+except:
+	FAN_OFF_TEMP=20
+	FAN_MAX_TEMP=50
+	UPDATE_INTERVAL=2
 
 
 def read_temp():
-	temp_raw=sp.check_output(["cat","/sys/devices/virtual/thermal/thermal_zone0/temp"])
-	temp=int(temp_raw.decode("utf8"))/1000
+	with open("/sys/devices/virtual/thermal/thermal_zone0/temp","r") as file:
+		temp_raw=file.read()
+	temp=int(temp_raw)/1000
 	return temp
 
 def fan_curve(temp):
@@ -16,7 +28,8 @@ def fan_curve(temp):
 	return int(min(max(0,spd),255))
 
 def set_speed(spd):
-	return sp.check_output(['sh', '-c', f'echo {spd} > /sys/devices/pwm-fan/target_pwm'])
+	with open("/sys/devices/pwm-fan/target_pwm","w") as file:
+		file.write(f"{spd}")
 
 while True:
 	temp=read_temp()

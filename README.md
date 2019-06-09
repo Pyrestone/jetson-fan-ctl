@@ -4,10 +4,10 @@ Automagic fan control for the Nvidia Jetson Nano
 ## Requirements:
 
 ### Hardware
-I recommend you use the barrel jack with a 4A power supply  
-
-Additionally, you will need a 5V PWM fan for this to make any sense.  
+You will need a 5V PWM fan for this to make any sense.  
 I used the **Noctua nf-a4x20 5V PWM** fan.
+
+Additionally, I recommend you use the barrel jack with a 4A power supply.  
 
 ### Software
 I will assume you use the standard image on your jetson nano.
@@ -21,37 +21,26 @@ otherwise, you can install it with
 
 
 ## How to install:
-open /etc/rc.local using your favorite editor. I'm using nano here:
+run
 
-    sudo nano /etc/rc.local
-
-add the following lines to the start of the file:
-
-    #!/bin/bash
-    jetson_clocks
-    python3 /path/to/your/jetson-fan-ctl/fanctl.py &
-
-replace <code>/path/to/your/jetson-fan-ctl/fanctl.py</code> 
-by the path to fanctl.py in your system.  
-For me, this was <code>/home/pyrestone/jetson-fan-ctl/fanctl.py</code>  
-**Make sure you add the & symbol at the end of the line!**  
-Otherwise rc.local will not terminate, which gets the boot pocess stuck.  
-
-
-Additionally, run
-    
-    sudo chmod +x /etc/rc.local
+    ./install.sh
 
 The script will automatically run at boot time.
 
 It's a set-it-and-forget-it type thing, unless you want to mess with the fan speeds.
 
 ## How to customize:
-if you look into fanctl.py, you will find the following lines:
+open /etc/automagic-fan/config.json with your favorite editor (I'm using nano):  
 
-    FAN_OFF_TEMP=20
-    FAN_MAX_TEMP=50
-    UPDATE_INTERVAL=2
+    sudo nano /etc/automagic-fan/config.json
+
+you will find the following lines:
+
+    {
+    "FAN_OFF_TEMP":20,
+    "FAN_MAX_TEMP":50,
+    "UPDATE_INTERVAL":2
+    }
 
 Here you can set your desired temperatures (in °C).  
 <code>FAN_OFF_TEMP</code> is the temperature below which the fan is turned off.  
@@ -62,6 +51,11 @@ Additionally, you can set the interval (in seconds) in which the script updates 
 Two seconds worked fine for me here.
 
 You can use either integers (like 20) or floating point numbers (like 20.125) in each of these fields.  
-The temperature precision of the thermal sensors is 0.5°C, so don't expect this to be too precise.
+The temperature precision of the thermal sensors is 0.5 (°C), so don't expect this to be too precise.
 
-Any changes in the script will be will be applied after the next reboot.
+Any changes in the script will be will be applied after the next reboot.  
+Alternatively, you can run
+
+    service automagic-fan restart
+
+to apply changes immediately
