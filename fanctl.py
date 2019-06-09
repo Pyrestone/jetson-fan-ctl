@@ -16,7 +16,7 @@ def fan_curve(temp):
 	return int(min(max(0,spd),255))
 
 def set_speed(spd):
-	return sp.check_output(['sudo', 'sh', '-c', f'echo {spd} > /sys/devices/pwm-fan/target_pwm'])
+	return sp.check_output(['sh', '-c', f'echo {spd} > /sys/devices/pwm-fan/target_pwm'])
 
 while True:
 	temp=read_temp()
