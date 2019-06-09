@@ -33,7 +33,9 @@ add the following lines to the start of the file:
 
 replace <code>/path/to/your/jetson-fan-ctl/fanctl.py</code> 
 by the path to fanctl.py in your system.  
-For me, this was <code>/home/pyrestone/jetson-fan-ctl/fanctl.py</code>
+For me, this was <code>/home/pyrestone/jetson-fan-ctl/fanctl.py</code>  
+**Make sure you add the & symbol at the end of the line!**  
+Otherwise rc.local will not terminate, which gets the boot pocess stuck.  
 
 
 Additionally, run
