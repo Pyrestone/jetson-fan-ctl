@@ -1,0 +1,10 @@
+[Unit]
+Description=Automagic fan control
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/bin/automagic-fan/fanctl.py
+User=root
+
+[Install]
+WantedBy=multi-user.target
