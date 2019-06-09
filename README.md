@@ -56,6 +56,6 @@ The temperature precision of the thermal sensors is 0.5 (°C), so don't expect t
 Any changes in the script will be will be applied after the next reboot.  
 Alternatively, you can run
 
-    service automagic-fan restart
+    sudo service automagic-fan restart
 
 to apply changes immediately
