@@ -6,28 +6,17 @@ if [ $EUID != 0 ]; then
     exit $?
 fi
 
-echo "settling to /usr/bin/automagic-fan/..."
-mkdir /usr/bin/automagic-fan
-cp fanctl.py /usr/bin/automagic-fan/
+echo "installing to /usr/bin/automagic-fan/..."
+cp fanctl.py /usr/bin/
 echo "done"
 
-echo "adding service to /lib/systemd/system/..."
+echo "adding automagic-fan.service service to systemd"
 cp automagic-fan.service /lib/systemd/system/
 chmod 644 /lib/systemd/system/automagic-fan.service
-echo "done"
-
-echo "creating config at /etc/automagic-fan/"
-mkdir /etc/automagic-fan/
-cp config.json /etc/automagic-fan/
-chmod 664 /etc/automagic-fan/config.json
-echo "done"
-
-echo "starting and enabling service..."
 systemctl daemon-reload
-systemctl start automagic-fan
-systemctl enable automagic-fan
 echo "done"
 
-echo "automagic-fan installed sucessfully!"
-echo ""
-echo "To configure, edit /etc/automagic-fan/config.json (needs sudo)"
+echo "Installation complete."
+echo "To start the service, run:            'systemctl start automagic-fan'"
+echo "To enable the service on startup, run 'systemctl enable automagic-fan'"
+

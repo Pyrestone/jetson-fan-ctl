@@ -3,7 +3,7 @@ Description=Automagic fan control
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/python3 /usr/bin/automagic-fan/fanctl.py
+ExecStart=/usr/bin/python3 /usr/bin/fanctl.py
 User=root
 
 [Install]

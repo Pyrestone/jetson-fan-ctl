@@ -10,31 +10,20 @@ I used the **Noctua nf-a4x20 5V PWM** fan.
 Additionally, I recommend you use the barrel jack with a 4A power supply.  
 
 ### Software
-I will assume you use the standard image on your jetson nano.
 
-If you have python 3, you should be good to go.  
-you can check this using <code>python3 --version</code>  
-(3.5 or higher should be fine.)  
-otherwise, you can install it with  
-
-    sudo apt install python3-dev
-
+All necessary dependencies are already installed on the Jetson Nano. jetson-fan-ctl only depends on python2.
 
 ## How to install:
-run
 
     ./install.sh
 
-The script will automatically run at boot time.
-
-It's a set-it-and-forget-it type thing, unless you want to mess with the fan speeds.
-
 ## How to customize:
-open /etc/automagic-fan/config.json with your favorite editor (I'm using nano):  
+
+Create /etc/automagic-fan/config.json with your favorite editor (I'm using nano):  
 
     sudo nano /etc/automagic-fan/config.json
 
-you will find the following lines:
+The following options are supported:
 
     {
     "FAN_OFF_TEMP":20,
@@ -42,20 +31,14 @@ you will find the following lines:
     "UPDATE_INTERVAL":2
     }
 
-Here you can set your desired temperatures (in °C).  
 <code>FAN_OFF_TEMP</code> is the temperature below which the fan is turned off.  
 <code>FAN_MAX_TEMP</code> is the temperature above which the fan is at 100% speed.  
-The script interpolates linearly between these two points.
+<code>UPDATE_INTERVAL</code> is the update interval for the script in seconds
 
-Additionally, you can set the interval (in seconds) in which the script updates the fan speed.  
-Two seconds worked fine for me here.
-
-You can use either integers (like 20) or floating point numbers (like 20.125) in each of these fields.  
-The temperature precision of the thermal sensors is 0.5 (°C), so don't expect this to be too precise.
-
-Any changes in the script will be will be applied after the next reboot.  
-Alternatively, you can run
+Any changes in the script or configuration will be will be applied on reboot or after a service restart like:
 
     sudo service automagic-fan restart
-
-to apply changes immediately
+    
+    (OR)
+    
+    systemctl restart automagic-fan

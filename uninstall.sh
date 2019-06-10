@@ -11,16 +11,12 @@ systemctl stop automagic-fan
 systemctl disable automagic-fan
 echo "done"
 
-echo "removing /usr/bin/automagic-fan/..."
-rm -r /usr/bin/automagic-fan
+echo "removing /usr/bin/fanctl.py"
+rm /usr/bin/fanctl.py
 echo "done"
 
-echo "removing service from /lib/systemd/system/..."
+echo "removing service from /lib/systemd/system/automagic-fan.service"
 rm /lib/systemd/system/automagic-fan.service
-echo "done"
-
-echo "removing config at /etc/automagic-fan/"
-rm -r /etc/automagic-fan/
 echo "done"
 
 echo "automagic-fan uninstalled sucessfully!"
