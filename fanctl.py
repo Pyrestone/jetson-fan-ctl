@@ -18,7 +18,7 @@ config = dict(DEFAULT_SETTINGS)  # copy of DEFAULT_SETTINGS as config
 
 try:
     with open(CONFIG_FILENAME, "r") as config_file:
-        print(f'Loading config: {CONFIG_FILENAME}')
+        print('Loading config: {fn}'.format(fn=CONFIG_FILENAME))
         config.update(json.load(config_file))
 except FileNotFoundError:
     pass
