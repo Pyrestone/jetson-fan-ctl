@@ -47,8 +47,8 @@ you will find the following lines:
 <code>FAN_MAX_TEMP</code> is the temperature (°C) above which the fan is at 100% speed.  
 The script interpolates linearly between these two points.
 
-<code>UPDATE_INTERVAL<code> tells the script how often to update the fan speed (in seconds).
-<code>MAX_PERF<code> values greater than 0 set the CPU and GPU clock speeds to the maximum values. 
+<code>UPDATE_INTERVAL</code> tells the script how often to update the fan speed (in seconds).  
+<code>MAX_PERF</code> values greater than 0 maximize system performance by setting the CPU and GPU clock speeds to the maximum. 
 
 You can use either integers (like 20) or floating point numbers (like 20.125) in each of these fields.  
 The temperature precision of the thermal sensors is 0.5 (°C), so don't expect this to be too precise.
