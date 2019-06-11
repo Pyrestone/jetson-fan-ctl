@@ -12,8 +12,8 @@ Additionally, I recommend you use the barrel jack with a 4A power supply.
 ### Software
 I will assume you use the standard image on your jetson nano.
 
-If you have python 3, you should be good to go.  
-you can check this using <code>python3 --version</code>  
+Python 3 should be pre-installed on the jetson nano.  
+You can check this using <code>python3 --version</code>  
 (3.5 or higher should be fine.)  
 otherwise, you can install it with  
 
