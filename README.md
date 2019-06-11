@@ -60,6 +60,6 @@ You can run
 
 to apply changes immediately.
 
-I you suspect something went wrong, please check:
+If you suspect something went wrong, please check:
 
     sudo service automagic-fan status
