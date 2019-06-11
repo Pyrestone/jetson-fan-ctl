@@ -1,9 +1,8 @@
 #!/usr/bin/python3
+
 import time
 import json
 import subprocess as sp
-
-sp.call("jetson_clocks")
 
 try:
 	with open("/etc/automagic-fan/config.json","r") as file:
@@ -11,10 +10,17 @@ try:
 	FAN_OFF_TEMP=config["FAN_OFF_TEMP"]
 	FAN_MAX_TEMP=config["FAN_MAX_TEMP"]
 	UPDATE_INTERVAL=config["UPDATE_INTERVAL"]
+	MAX_PERF=config["MAX_PERF"]
 except:
+	print("error loading /etc/automagic-fan/config.json.\nPlease check your config file.\nProceeding with default settings.")
 	FAN_OFF_TEMP=20
 	FAN_MAX_TEMP=50
 	UPDATE_INTERVAL=2
+	MAX_PERF=0
+
+if MAX_PERF>0:
+	print("Maximizing clock speeds with jetson_clocks")
+	sp.call("jetson_clocks")
 
 
 def read_temp():
@@ -31,6 +37,7 @@ def set_speed(spd):
 	with open("/sys/devices/pwm-fan/target_pwm","w") as file:
 		file.write(f"{spd}")
 
+print("Setup complete.\nRunning normally.")
 while True:
 	temp=read_temp()
 	spd=fan_curve(temp)

@@ -6,9 +6,10 @@ if [ $EUID != 0 ]; then
     exit $?
 fi
 
-echo "settling to /usr/bin/automagic-fan/..."
-mkdir /usr/bin/automagic-fan
-cp fanctl.py /usr/bin/automagic-fan/
+echo "settling to /usr/local/bin/automagic-fan/..."
+rm -r /usr/bin/automagic-fan/ 2>/dev/null
+mkdir /usr/local/bin/automagic-fan
+cp fanctl.py /usr/local/bin/automagic-fan/
 echo "done"
 
 echo "adding service to /lib/systemd/system/..."

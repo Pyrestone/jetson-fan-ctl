@@ -39,23 +39,27 @@ you will find the following lines:
     {
     "FAN_OFF_TEMP":20,
     "FAN_MAX_TEMP":50,
-    "UPDATE_INTERVAL":2
+    "UPDATE_INTERVAL":2,
+    "MAX_PERF":1
     }
 
-Here you can set your desired temperatures (in °C).  
-<code>FAN_OFF_TEMP</code> is the temperature below which the fan is turned off.  
-<code>FAN_MAX_TEMP</code> is the temperature above which the fan is at 100% speed.  
+<code>FAN_OFF_TEMP</code> is the temperature (°C) below which the fan is turned off.  
+<code>FAN_MAX_TEMP</code> is the temperature (°C) above which the fan is at 100% speed.  
 The script interpolates linearly between these two points.
 
-Additionally, you can set the interval (in seconds) in which the script updates the fan speed.  
-Two seconds worked fine for me here.
+<code>UPDATE_INTERVAL<code> tells the script how often to update the fan speed (in seconds).
+<code>MAX_PERF<code> values greater than 0 set the CPU and GPU clock speeds to the maximum values. 
 
 You can use either integers (like 20) or floating point numbers (like 20.125) in each of these fields.  
 The temperature precision of the thermal sensors is 0.5 (°C), so don't expect this to be too precise.
 
 Any changes in the script will be will be applied after the next reboot.  
-Alternatively, you can run
+You can run
 
     sudo service automagic-fan restart
 
-to apply changes immediately
+to apply changes immediately.
+
+I you suspect something went wrong, please check:
+
+    sudo service automagic-fan status
