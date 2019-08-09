@@ -6,6 +6,7 @@ Type=simple
 ExecStart=/usr/bin/python3 -u /usr/local/bin/automagic-fan/fanctl.py
 User=root
 StandardOutput=journal+console
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
