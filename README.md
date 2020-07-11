@@ -23,7 +23,7 @@ otherwise, you can install it with
 ## How to install:
 run
 
-    ./install.sh
+    sudo ./install.sh
 
 The script will automatically run at boot time.
 
