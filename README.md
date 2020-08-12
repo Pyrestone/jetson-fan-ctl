@@ -63,3 +63,10 @@ to apply changes immediately.
 If you suspect something went wrong, please check:
 
     sudo service automagic-fan status
+
+## How to contribute:
+Feel Free to open Issues or Pull requests on this Repository.
+
+If you find this tool useful, you can buy me a coffe:
+
+[![](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://paypal.me/pyrestone)
