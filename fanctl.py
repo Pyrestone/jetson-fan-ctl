@@ -19,12 +19,11 @@ except:
 	MAX_PERF=0
 
 if MAX_PERF>0:
-        
 	print("Maximizing clock speeds with jetson_clocks")
 	try:
-            sp.call("jetson_clocks")
-        except Exception as e:
-            print(f"Error calling jetson_clocks: {repr(e)}")
+		sp.call("jetson_clocks")
+	except Exception as e:
+		print(f"Error calling jetson_clocks: {repr(e)}")
 
 
 def read_temp():
