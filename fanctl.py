@@ -52,5 +52,5 @@ print("Setup complete.\nRunning normally.")
 while True:
     temp = read_temp()
     spd = fan_curve(temp)
-    out = set_speed(spd)
+    set_speed(spd)
     time.sleep(UPDATE_INTERVAL)
