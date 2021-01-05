@@ -10,7 +10,7 @@ try:
     FAN_MAX_TEMP = config["FAN_MAX_TEMP"]
     UPDATE_INTERVAL = config["UPDATE_INTERVAL"]
     MAX_PERF = config["MAX_PERF"]
-except:
+except Exception:
     print(
         (
             "error loading /etc/automagic-fan/config.json.\n"
