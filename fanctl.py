@@ -31,19 +31,19 @@ if MAX_PERF > 0:
         print(f"Error calling jetson_clocks: {repr(e)}")
 
 
-def read_temp():
+def read_temp() -> int:
     with open("/sys/devices/virtual/thermal/thermal_zone0/temp", "r") as file:
         temp_raw = file.read()
     temp = int(temp_raw) / 1000
     return temp
 
 
-def fan_curve(temp):
+def fan_curve(temp: int) -> int:
     spd = 255 * (temp - FAN_OFF_TEMP) / (FAN_MAX_TEMP - FAN_OFF_TEMP)
     return int(min(max(0, spd), 255))
 
 
-def set_speed(spd):
+def set_speed(spd: int) -> None:
     with open("/sys/devices/pwm-fan/target_pwm", "w") as file:
         file.write(f"{spd}")
 
