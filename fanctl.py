@@ -41,10 +41,13 @@ def set_speed(spd):
 		file.write(f"{spd}")
 
 print("Setup complete.\nRunning normally.")
+last_spd=-1
 while True:
 	temp=read_temp()
 	spd=fan_curve(temp)
-	out=set_speed(spd)
+	if spd!=last_spd:
+		set_speed(spd)
+		last_spd=spd
 	time.sleep(UPDATE_INTERVAL)
 
 
