@@ -8,7 +8,7 @@ fi
 
 echo "settling to /usr/local/bin/automagic-fan/..."
 rm -r /usr/bin/automagic-fan/ 2>/dev/null
-mkdir /usr/local/bin/automagic-fan
+mkdir -p /usr/local/bin/automagic-fan
 cp fanctl.py /usr/local/bin/automagic-fan/
 echo "done"
 
