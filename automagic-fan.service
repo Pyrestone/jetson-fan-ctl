@@ -3,6 +3,7 @@ Description=Automagic fan control
 
 [Service]
 Type=simple
+ExecStartPre=/bin/sleep 5
 ExecStart=/usr/bin/python3 -u /usr/local/bin/automagic-fan/fanctl.py
 ExecStopPost=/bin/sh -c '/bin/echo 0 > /sys/devices/pwm-fan/target_pwm'
 User=root
