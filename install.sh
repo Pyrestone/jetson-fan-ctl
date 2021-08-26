@@ -2,15 +2,14 @@
 
 #Require sudo
 if [ $EUID != 0 ]; then
-    sudo "$0" "$@"
-    exit $?
+  sudo "$0" "$@"
+  exit $?
 fi
 
-echo "settling to /usr/local/bin/automagic-fan/..."
-rm -r /usr/bin/automagic-fan/ 2>/dev/null
-mkdir -p /usr/local/bin/automagic-fan
-cp fanctl.py /usr/local/bin/automagic-fan/
-echo "done"
+apt-get update
+apt-get install python3-pip
+
+pip3 install "https://github.com/rnsc/jetson-fan-ctl/releases/download/v0.1.0/jetsonfanctl-0.1.0-py3-none-any.whl"
 
 echo "adding service to /lib/systemd/system/..."
 cp automagic-fan.service /lib/systemd/system/
