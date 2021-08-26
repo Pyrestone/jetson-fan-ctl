@@ -1,1 +1,2 @@
 dist/*
+src/jetson_fan_ctl.egg-info/*
