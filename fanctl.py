@@ -37,6 +37,8 @@ def read_temp():
 def fan_curve(temp):
 	spd=255*(temp-FAN_OFF_TEMP)/(FAN_MAX_TEMP-FAN_OFF_TEMP)
 	spd=int(min(max(0,spd),255))
+        # DEBUG
+	# print(255-spd if INVERSED_PIN else spd)
 	return 255-spd if INVERSED_PIN else spd
 
 def set_speed(spd):
