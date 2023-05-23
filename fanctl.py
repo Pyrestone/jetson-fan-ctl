@@ -11,12 +11,14 @@ try:
 	FAN_MAX_TEMP=config["FAN_MAX_TEMP"]
 	UPDATE_INTERVAL=config["UPDATE_INTERVAL"]
 	MAX_PERF=config["MAX_PERF"]
+	INVERSED_PIN=config["INVERSED_PIN"]
 except:
 	print("error loading /etc/automagic-fan/config.json.\nPlease check your config file.\nProceeding with default settings.")
 	FAN_OFF_TEMP=20
 	FAN_MAX_TEMP=50
 	UPDATE_INTERVAL=2
 	MAX_PERF=0
+	INVERSED_PIN=true
 
 if MAX_PERF>0:
 	print("Maximizing clock speeds with jetson_clocks")
@@ -34,7 +36,10 @@ def read_temp():
 
 def fan_curve(temp):
 	spd=255*(temp-FAN_OFF_TEMP)/(FAN_MAX_TEMP-FAN_OFF_TEMP)
-	return int(min(max(0,spd),255))
+	spd=int(min(max(0,spd),255))
+        # DEBUG
+	# print(255-spd if INVERSED_PIN else spd)
+	return 255-spd if INVERSED_PIN else spd
 
 def set_speed(spd):
 	with open("/sys/devices/pwm-fan/target_pwm","w") as file:
