@@ -29,6 +29,6 @@ systemctl start automagic-fan
 systemctl enable automagic-fan
 echo "done"
 
-echo "automagic-fan installed sucessfully!"
+echo "automagic-fan installed successfully!"
 echo ""
 echo "To configure, edit /etc/automagic-fan/config.json (needs sudo)"
